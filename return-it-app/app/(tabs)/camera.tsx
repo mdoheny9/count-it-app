@@ -7,6 +7,8 @@ import { Button, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-n
 import CaptureButton from '@/components/CaptureButton';
 import IconButton from '@/components/IconButton';
 
+import axios from 'axios';
+
 
 export default function App() {
   const [facing, setFacing] = useState<CameraType>('back');
@@ -28,6 +30,36 @@ export default function App() {
       </View>
     );
   }
+
+  const submitPhoto = async () => {
+    if (!uri) return;
+
+    const formData = new FormData();
+    formData.append("file", {
+      uri,
+      name: "photo.jpg",
+      type: "image/jpeg",
+    } as any);
+
+    try {
+      
+    const response = await axios.post("http://172.20.10.2:8000/count-cans/", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+
+      });
+
+      const { vision_api_cans, opencv_estimate } = response.data;
+
+      alert(`Detected ${vision_api_cans} cans (Vision API), ${opencv_estimate} objects (OpenCV)`);
+
+    } catch (error) {
+      console.error("Error submitting photo:", error);
+      alert("Failed to submit photo.");
+    }
+  };
+      
     const pickImageAsync = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ['images'],
@@ -61,7 +93,7 @@ export default function App() {
           <Image source={{ uri }} style={styles.preview} />
           <View style={styles.buttonContainer}>
             <Button title="Retake" onPress={resetPhoto} />
-            <Button title="Submit" onPress = {() => alert("photo submitted")} />
+            <Button title="Submit" onPress={submitPhoto} />
           </View>
         </>
       ) : (
