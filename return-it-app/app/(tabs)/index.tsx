@@ -1,64 +1,54 @@
-import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { Text, View, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { useRouter } from 'expo-router';
+
+const items = [
+  { type: 'Aluminum Can', value: '+ 0.10c', icon: require('../../assets/alum.png') },
+  { type: 'Plastic Bottle', value: '+ 0.10c', icon: require('../../assets/plastic.png') },
+  { type: 'Glass Bottle', value: '+ 0.10c', icon: require('../../assets/glass.png') },
+  { type: 'Plastic Bottle', value: '+ 0.10c', icon: require('../../assets/plastic.png') },
+  { type: 'Aluminum Can', value: '+ 0.10c', icon: require('../../assets/alum.png') },
+];
 
 export default function Index() {
+  const router = useRouter();
+
   return (
     <View style={styles.container}>
       <View style={styles.headerBox}>
         <Text style={styles.text}>COUNT-IT</Text>
       </View>
 
-      <View style={styles.tableBox}>
-        {/* Info Box at Top of Table */}
-        <View style={styles.infoBox}>
-          <View style={styles.rowSplitWide}>
-            <Text style={styles.infoLeftText}>12 bottles</Text>
-            <Text style={styles.infoRightText}>$45.32</Text>
-          </View>
-        </View>
-
-        {/* Table Rows with Boxes */}
-        <View style={styles.tableRowBox}>
-          <View style={styles.tableRow}>
-            <Image source={require('../../assets/plastic.png')} style={styles.icon} />
-            <View style={styles.rowSplit}>
-              <Text style={styles.leftText}>Plastic</Text>
-              <Text style={styles.rightText}>+ 0.43c</Text>
+      <View style={styles.tableContainer}>
+        <View style={styles.tableBox}>
+          <View style={styles.infoBox}>
+            <View style={styles.rowSplitWide}>
+              <Text style={styles.infoLeftText}>12 bottles</Text>
+              <Text style={styles.infoRightText}>Total: $45.32</Text>
             </View>
           </View>
-        </View>
-        <View style={styles.tableRowBox}>
-          <View style={styles.tableRow}>
-            <Image source={require('../../assets/plastic.png')} style={styles.icon} />
-            <View style={styles.rowSplit}>
-              <Text style={styles.leftText}>Plastic</Text>
-              <Text style={styles.rightText}>+ 0.43c</Text>
-            </View>
-          </View>
-        </View>
-        <View style={styles.tableRowBox}>
-          <View style={styles.tableRow}>
-            <Image source={require('../../assets/plastic.png')} style={styles.icon} />
-            <View style={styles.rowSplit}>
-              <Text style={styles.leftText}>Plastic</Text>
-              <Text style={styles.rightText}>+ 0.43c</Text>
-            </View>
-          </View>
-        </View>
 
-        {/* Fade Indicator */}
-        <View style={styles.fadeIndicator}>
-          <Text style={styles.fadeText}>⋯</Text>
-        </View>
+          <ScrollView style={styles.scrollArea}>
+            {items.map((item, index) => (
+              <View key={index} style={styles.tableRowBox}>
+                <View style={styles.tableRow}>
+                  <Image source={item.icon} style={styles.icon} />
+                  <View style={styles.rowSplit}>
+                    <Text style={styles.leftText}>{item.type}</Text>
+                    <Text style={styles.rightText}>{item.value}</Text>
+                  </View>
+                </View>
+              </View>
+            ))}
+          </ScrollView>
 
-        {/* Full History Box */}
-        <View style={styles.historyBox}>
-          <Text style={styles.historyText}>See Full History</Text>
+          <View style={styles.historyBox}>
+            <Text style={styles.historyText}>See Full History</Text>
+          </View>
         </View>
       </View>
 
-      {/* Plus Button */}
       <View style={styles.plusContainer}>
-        <TouchableOpacity style={styles.plusButton}>
+        <TouchableOpacity style={styles.plusButton} onPress={() => router.push('/camera')}>
           <Text style={styles.plusText}>+</Text>
         </TouchableOpacity>
       </View>
@@ -89,8 +79,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 32,
   },
-  tableBox: {
+  tableContainer: {
+    flex: 1,
     width: '90%',
+    marginBottom: 20,
+  },
+  scrollArea: {
+    maxHeight: 200,
+  },
+  tableBox: {
     borderWidth: 2,
     borderColor: '#ffffff',
     borderRadius: 8,
@@ -106,8 +103,8 @@ const styles = StyleSheet.create({
   infoBox: {
     borderWidth: 1,
     borderColor: '#ffffff',
-    padding: 16, // Increased padding
-    borderRadius: 10, // Slightly larger radius
+    padding: 16,
+    borderRadius: 10,
     backgroundColor: '#005a9c',
     marginBottom: 15,
   },
@@ -156,15 +153,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'right',
   },
-  fadeIndicator: {
-    alignItems: 'center',
-    marginVertical: 5,
-  },
-  fadeText: {
-    fontSize: 24,
-    color: '#ffffff',
-    opacity: 0.5,
-  },
   historyBox: {
     marginTop: 10,
     padding: 10,
@@ -180,11 +168,11 @@ const styles = StyleSheet.create({
   plusContainer: {
     alignItems: 'center',
     marginTop: 40,
-    marginBottom: 60, // Adds more space below the button
+    marginBottom: 60,
   },
   plusButton: {
     backgroundColor: '#f9c258',
-    width: 80, // Smaller size
+    width: 80,
     height: 80,
     borderRadius: 40,
     alignItems: 'center',
