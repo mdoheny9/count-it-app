@@ -45,5 +45,6 @@ app-example
 # backend
 backend/venv/
 backend/credentials.json
+backend/service_account.json
 __pycache__/
 
