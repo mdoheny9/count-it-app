@@ -7,8 +7,9 @@ Count-It is a simple, intuitive app designed to help users keep track of their c
 - Manual Input: Quickly log the number of cans you have by entering them manually.
 - Photo Counting: Take a picture of a bundle of cans, and Count-It will calculate the quantity for you using image recognition
 - Earnings Estimation: See how much money you'll make when you deposit your cnas ta the local recyling depot
+- History: See all past logs, organized by date, with money total for each day
 
-# how its work
+# how it works
 
 Count-it uses a combination of smart image processing and Google Vision AI to automatically count the cans in your photos.
 
