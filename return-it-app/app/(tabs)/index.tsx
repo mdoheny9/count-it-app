@@ -1,5 +1,6 @@
 import { Text, View, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
 
 const items = [
   { type: 'Aluminum Can', value: '+ 0.10c', icon: require('../../assets/alum.png') },
@@ -49,8 +50,12 @@ export default function Index() {
         </View>
       </View>
 
-      <View style={styles.plusContainer}>
-        <TouchableOpacity style={styles.plusButton} onPress={() => router.push('/camera')}>
+      <View style={styles.actionContainer}>
+        <TouchableOpacity style={styles.iconButton} onPress={() => router.push('/camera')}>
+          <Ionicons name="camera-sharp" size={32} color="#003c70" />
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.plusButton} onPress={() => router.push('/manual')}>
           <Text style={styles.plusText}>+</Text>
         </TouchableOpacity>
       </View>
@@ -167,10 +172,21 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
   },
-  plusContainer: {
-    alignItems: 'center',
+  actionContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '60%',
     marginTop: 40,
     marginBottom: 60,
+  },
+  iconButton: {
+    backgroundColor: '#f9c258',
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 5,
   },
   plusButton: {
     backgroundColor: '#f9c258',

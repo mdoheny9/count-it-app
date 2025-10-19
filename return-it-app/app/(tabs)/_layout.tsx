@@ -43,6 +43,15 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="manual"
+        options={{
+          title: 'Manual',
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons name={focused ? 'create-sharp' : 'create-outline'} color={color} size={24} />
+          ),
+        }}
+      />
     </Tabs>
   );
 }
