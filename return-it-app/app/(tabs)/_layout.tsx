@@ -14,13 +14,21 @@ export default function TabLayout() {
             backgroundColor: '#25292e',
         },
     }}>
-      <Tabs.Screen 
+        <Tabs.Screen 
         name="index" 
         options={{ title: 'Home',
             tabBarIcon: ({ color, focused }) => (
                 <Ionicons name={focused ? 'home-sharp' : 'home-outline'} color={color} size={24} />
             ),
-         }} />
+            }} />
+        <Tabs.Screen 
+        name="camera" 
+        options={{ title: 'Camera',
+            tabBarIcon: ({ color, focused }) => (
+                // <Ionicons name={focused ? 'home-sharp' : 'home-outline'} color={color} size={24} />
+                <Ionicons name={focused ? 'camera-sharp' : 'camera-outline'} color={color} size={24} />
+            ),
+            }} />
     </Tabs>
   );
 }
