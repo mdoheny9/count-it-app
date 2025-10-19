@@ -1,5 +1,5 @@
 import { Text, View, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
-import { useRouter } from 'expo-router';
+import { useRouter, SearchParams } from 'expo-router';
 
 const items = [
   { type: 'Aluminum Can', value: '+ 0.10c', icon: require('../../assets/alum.png') },
@@ -9,15 +9,41 @@ const items = [
   { type: 'Aluminum Can', value: '+ 0.10c', icon: require('../../assets/alum.png') },
 ];
 
-export default function Index() {
-  const router = useRouter();
+interface IndexProps {
+  searchParams?: {
+    vision_api_cans?: string;
+    opencv_estimate?: string;
+  };
+}
 
+// export default function Index({ searchParams }: IndexProps) {
+//   // Default to 0 if undefined
+//   const visionCans = searchParams?.vision_api_cans ? parseInt(searchParams.vision_api_cans) : 0;
+//   const opencvEstimate = searchParams?.opencv_estimate ? parseInt(searchParams.opencv_estimate) : 0;
+
+//   return (
+//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+//       <Text>Vision API cans: {visionCans}</Text>
+//       <Text>OpenCV estimate: {opencvEstimate}</Text>
+//     </View>
+//   );
+// }
+
+export default function Index({ searchParams }: IndexProps) {
+  const visionCans = searchParams?.vision_api_cans ? parseInt(searchParams.vision_api_cans) : 0;
+  const opencvEstimate = searchParams?.opencv_estimate ? parseInt(searchParams.opencv_estimate) : 0;
+
+  const router = useRouter();
   return (
     <View style={styles.container}>
       <View style={styles.headerBox}>
         <Text style={styles.text}>COUNT-IT</Text>
       </View>
 
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Vision API cans: {visionCans}</Text>
+        <Text>OpenCV estimate: {opencvEstimate}</Text>
+      </View>
       <View style={styles.tableContainer}>
         <View style={styles.tableBox}>
           <View style={styles.infoBox}>

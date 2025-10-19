@@ -1,5 +1,6 @@
 import { CameraView, CameraType, useCameraPermissions } from 'expo-camera';
 import * as ImagePicker from 'expo-image-picker';
+import { useRouter } from 'expo-router';
 
 import { useRef, useState } from 'react';
 import { Button, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
@@ -11,6 +12,8 @@ import axios from 'axios';
 
 
 export default function App() {
+  const router = useRouter();
+
   const [facing, setFacing] = useState<CameraType>('back');
   const [permission, requestPermission] = useCameraPermissions();
   const ref = useRef<CameraView>(null);
@@ -31,29 +34,28 @@ export default function App() {
     );
   }
 
-  const submitPhoto = async () => {
-    if (!uri) return;
+  const submitPhoto = async (imageUri?: string) => {
+    const photoUri = imageUri || uri; // use passed URI or state URI
+    if (!photoUri) return;
 
     const formData = new FormData();
-    formData.append("file", {
-      uri,
-      name: "photo.jpg",
-      type: "image/jpeg",
-    } as any);
+    formData.append("file", { uri, name: "photo.jpg", type: "image/jpeg" } as any);
 
     try {
-      
-    const response = await axios.post("http://172.20.10.2:8000/count-cans/", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-
+      const response = await axios.post("http://172.20.10.2:8000/count-cans/", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
       });
 
       const { vision_api_cans, opencv_estimate } = response.data;
 
-      alert(`Detected ${vision_api_cans} cans (Vision API), ${opencv_estimate} objects (OpenCV)`);
-
+      // Navigate back to Index and pass the results
+      router.push({
+        pathname: '/',
+        params: {
+          vision_api_cans: vision_api_cans.toString(),
+          opencv_estimate: opencv_estimate.toString(),
+        },
+      });
     } catch (error) {
       console.error("Error submitting photo:", error);
       alert("Failed to submit photo.");
@@ -70,6 +72,7 @@ export default function App() {
         if (!result.canceled) {
             const selectedUri = result.assets[0].uri;
             setUri(selectedUri); 
+            await submitPhoto(selectedUri);
         } else {
         alert('You did not select any image.');
         }
@@ -93,7 +96,7 @@ export default function App() {
           <Image source={{ uri }} style={styles.preview} />
           <View style={styles.buttonContainer}>
             <Button title="Retake" onPress={resetPhoto} />
-            <Button title="Submit" onPress={submitPhoto} />
+            <Button title="Submit" onPress={() => submitPhoto()} />
           </View>
         </>
       ) : (
