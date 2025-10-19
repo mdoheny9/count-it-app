@@ -22,9 +22,15 @@ Count-it uses a combination of smart image processing and Google Vision AI to au
    This gives an OpenCV-based estimate of how many cans are in the photo.
 3. Google Visian AI
    The full image is also sent to Google's Vision AI
-   The AI identifies objects in the image and matches them agains a list of "can-like" keywords such as can, aluminim, soda, drink, or bottle.
+   The AI identifies objects in the image and matches them against a list of "can-like" keywords such as can, aluminum, soda, drink, or bottle.
    This produces a Vision API estimate of the can count.
 4. Final Count:
-   to be detremined
+   to be determined
 5. Earnings Calculations:
    Based on the total can count, Count-It calculates how much money you'll earn at your local recycling depot.
+
+# slideshow
+
+https://uvic-my.sharepoint.com/:p:/g/personal/juliaottenbreit_uvic_ca/EYu88iuGDSlCvEfskUOzSzEBu5M69JEtNrUcbQmraDCI8w?e=jEvzBV 
+
+   
