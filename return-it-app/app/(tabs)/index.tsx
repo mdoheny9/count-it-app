@@ -10,7 +10,7 @@ export default function Index() {
       <View style={styles.tableBox}>
         {/* Info Box at Top of Table */}
         <View style={styles.infoBox}>
-          <View style={styles.rowSplit}>
+          <View style={styles.rowSplitWide}>
             <Text style={styles.infoLeftText}>12 bottles</Text>
             <Text style={styles.infoRightText}>$45.32</Text>
           </View>
@@ -97,6 +97,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#004080',
     padding: 10,
   },
+  rowSplitWide: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
   infoBox: {
     borderWidth: 1,
     borderColor: '#ffffff',
@@ -172,25 +178,24 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   plusContainer: {
-    flex: 1,
-    justifyContent: 'flex-end',
     alignItems: 'center',
-    marginBottom: 40,
+    marginTop: 40,
+    marginBottom: 60, // Adds more space below the button
   },
   plusButton: {
     backgroundColor: '#f9c258',
-    width: 100,
-    height: 100,
-    borderRadius: 50,
+    width: 80, // Smaller size
+    height: 80,
+    borderRadius: 40,
     alignItems: 'center',
     justifyContent: 'center',
     elevation: 5,
   },
   plusText: {
-    fontSize: 60,
+    fontSize: 48,
     color: '#003c70',
     fontWeight: 'bold',
-    lineHeight: 60,
+    lineHeight: 48,
     textAlign: 'center',
   },
 });
