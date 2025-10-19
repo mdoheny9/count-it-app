@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+opencv-python
+google-cloud-vision
+google-auth
+google-auth-oauthlib
+pillow
+python-multipart
