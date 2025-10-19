@@ -3,7 +3,7 @@ from google.cloud import vision
 from google.oauth2 import service_account
 import numpy as np
 
-CREDENTIALS_PATH = r"C:\Users\finnd\Documents\Hackathon\return-it-app\return-it-app\backend\service_account.json"
+CREDENTIALS_PATH = r"C:\Users\megan\.Other\service_account.json"
 creds = service_account.Credentials.from_service_account_file(CREDENTIALS_PATH)
 client = vision.ImageAnnotatorClient(credentials=creds)
 

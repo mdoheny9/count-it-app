@@ -10,7 +10,6 @@ import IconButton from '@/components/IconButton';
 
 import axios from 'axios';
 
-
 export default function App() {
   const router = useRouter();
 
@@ -42,15 +41,17 @@ export default function App() {
     formData.append("file", { uri, name: "photo.jpg", type: "image/jpeg" } as any);
 
     try {
-      const response = await axios.post("http://172.20.10.2:8000/count-cans/", formData, {
+      const response = await axios.post("http://172.20.10.3:8000/count-cans/", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
       const { vision_api_cans, opencv_estimate } = response.data;
 
+      // // chat stuff
+      // router.push(`/?vision_api_cans=${vision_api_cans}&opencv_estimate=${opencv_estimate}`);
       // Navigate back to Index and pass the results
       router.push({
-        pathname: '/',
+        pathname: '/(tabs)',
         params: {
           vision_api_cans: vision_api_cans.toString(),
           opencv_estimate: opencv_estimate.toString(),

@@ -1,5 +1,6 @@
 import { Text, View, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
-import { useRouter, SearchParams } from 'expo-router';
+import { useRouter } from 'expo-router';
+import { useState, useEffect } from 'react';
 
 const items = [
   { type: 'Aluminum Can', value: '+ 0.10c', icon: require('../../assets/alum.png') },
@@ -16,24 +17,23 @@ interface IndexProps {
   };
 }
 
-// export default function Index({ searchParams }: IndexProps) {
-//   // Default to 0 if undefined
-//   const visionCans = searchParams?.vision_api_cans ? parseInt(searchParams.vision_api_cans) : 0;
-//   const opencvEstimate = searchParams?.opencv_estimate ? parseInt(searchParams.opencv_estimate) : 0;
-
-//   return (
-//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-//       <Text>Vision API cans: {visionCans}</Text>
-//       <Text>OpenCV estimate: {opencvEstimate}</Text>
-//     </View>
-//   );
-// }
-
 export default function Index({ searchParams }: IndexProps) {
+  
+  const router = useRouter();
+  console.log(searchParams);
   const visionCans = searchParams?.vision_api_cans ? parseInt(searchParams.vision_api_cans) : 0;
   const opencvEstimate = searchParams?.opencv_estimate ? parseInt(searchParams.opencv_estimate) : 0;
 
-  const router = useRouter();
+  // Local cancount state
+  const [cancount, setCancount] = useState<number>(0);
+  // Increment cancount whenever visionCans changes
+  useEffect(() => {
+    if (visionCans > 0) {
+      setCancount(prev => prev + visionCans);
+    }
+  }, [visionCans]);
+
+  
   return (
     <View style={styles.container}>
       <View style={styles.headerBox}>
@@ -43,6 +43,7 @@ export default function Index({ searchParams }: IndexProps) {
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Text>Vision API cans: {visionCans}</Text>
         <Text>OpenCV estimate: {opencvEstimate}</Text>
+        <Text>Total can count: {cancount}</Text>
       </View>
       <View style={styles.tableContainer}>
         <View style={styles.tableBox}>
