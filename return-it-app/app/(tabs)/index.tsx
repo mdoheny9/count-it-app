@@ -23,7 +23,7 @@ export default function Index() {
           <View style={styles.infoBox}>
             <View style={styles.rowSplitWide}>
               <Text style={styles.infoLeftText}>12 bottles</Text>
-              <Text style={styles.infoRightText}>Total: $45.32</Text>
+              <Text style={styles.infoRightText}>Total: $14.32</Text>
             </View>
           </View>
 
@@ -42,7 +42,9 @@ export default function Index() {
           </ScrollView>
 
           <View style={styles.historyBox}>
-            <Text style={styles.historyText}>See Full History</Text>
+            <TouchableOpacity onPress={() => router.push('/history')}>
+              <Text style={styles.historyText}>See Full History</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
