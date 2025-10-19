@@ -7,7 +7,7 @@ app = FastAPI()
 
 @app.get("/")
 def home():
-    return {"message": "Can detection API is running 🚀"}
+    return {"message": "Can detection API is running "}
 
 @app.post("/count-cans/")
 async def detect_cans(file: UploadFile = File(...)):
