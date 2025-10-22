@@ -1,6 +1,7 @@
-# Count-It-App
+# Count-It-App ♻️
 
 Count-It is an intuitive cross-platform app designed to help users keep track of their cans and bottles while estimating the money they can earn by recycling. Whether you’re collecting for fun, fundraising, or sustainability, Count-It makes the process easy and efficient.
+
 
 ## Features
 
@@ -8,10 +9,11 @@ Count-It is an intuitive cross-platform app designed to help users keep track of
 - Photo Counting: Take a picture of a bundle of cans, and Count-It will automatically estimate the quantity using image recognition.
 - Earnings Estimation: See how much money you'll make when you deposit your cans to the local recycling depot
 - History: See past logs organized by date, including the total can count and estimated earnings for each day.
+<img width="1815" height="806" alt="image" src="https://github.com/user-attachments/assets/5985d937-3c0b-4bf5-8f73-4b6332158131" />
 
-# how it works
+## How it works
 
-Count-It uses a AI-powered image recognition to automatically count the cans in your photos and estimate recycling earnings.
+Count-It uses AI-powered image recognition to automatically count the cans in your photos and estimate recycling earnings.
 
 1. Image Upload:
    Users start by taking or uploading a photo of their bundle of cans.
