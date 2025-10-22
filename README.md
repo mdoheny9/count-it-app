@@ -1,36 +1,30 @@
-# count-it-app
+# Count-It-App
 
-Count-It is a simple, intuitive app designed to help users keep track of their cans and bottles while estimating the money they can earn by recycling. Whether you’re collecting for fun, fundraising, or sustainability, Count-It makes the process easy and efficient.
+Count-It is an intuitive cross-platform app designed to help users keep track of their cans and bottles while estimating the money they can earn by recycling. Whether you’re collecting for fun, fundraising, or sustainability, Count-It makes the process easy and efficient.
 
-# features
+## Features
 
 - Manual Input: Quickly log the number of cans you have by entering them manually.
-- Photo Counting: Take a picture of a bundle of cans, and Count-It will calculate the quantity for you using image recognition
-- Earnings Estimation: See how much money you'll make when you deposit your cnas ta the local recyling depot
-- History: See all past logs, organized by date, with money total for each day
+- Photo Counting: Take a picture of a bundle of cans, and Count-It will automatically estimate the quantity using image recognition.
+- Earnings Estimation: See how much money you'll make when you deposit your cans to the local recycling depot
+- History: See past logs organized by date, including the total can count and estimated earnings for each day.
 
 # how it works
 
-Count-it uses a combination of smart image processing and Google Vision AI to automatically count the cans in your photos.
+Count-It uses a AI-powered image recognition to automatically count the cans in your photos and estimate recycling earnings.
 
 1. Image Upload:
-   You take a photo of your bundle of cans, and the app converts it into a format it can analyze.
+   Users start by taking or uploading a photo of their bundle of cans.
 2. OpenCV Processing:
-   The app enhances the image for better visibility.
-   It converts the photo to grayscale, smooths out noise, and detects edges.
-   Contours are identified and filtered to focus on roughly cylindrical objects that look like cans
-   This gives an OpenCV-based estimate of how many cans are in the photo.
-3. Google Visian AI
-   The full image is also sent to Google's Vision AI
+   Using OpenCV, the backend enhances the image for better visability by converting it to grayscale, reducing noise, and detecting edges and contours-- producing the OpenCV-based can count.
+3. Google Vision AI
+   The full image is additionally sent to Google's Vision AI
    The AI identifies objects in the image and matches them against a list of "can-like" keywords such as can, aluminum, soda, drink, or bottle.
    This produces a Vision API estimate of the can count.
 4. Final Count:
-   to be determined
+   A combined algorithm (in development) will merge results from both the OpenCV and Google Vision AI analyses to produce a more accurate final count.
 5. Earnings Calculations:
-   Based on the total can count, Count-It calculates how much money you'll earn at your local recycling depot.
+   Based on the final can count, Count-It calculates the estimated deposit refund a user would earn at their local recycling depot.
 
-# slideshow
-
-https://uvic-my.sharepoint.com/:p:/g/personal/juliaottenbreit_uvic_ca/EYu88iuGDSlCvEfskUOzSzEBu5M69JEtNrUcbQmraDCI8w?e=jEvzBV 
-
-   
+## Installation/Setup
+Coming soon 🤫
